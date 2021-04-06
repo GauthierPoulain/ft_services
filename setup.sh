@@ -8,7 +8,7 @@ if [ -n "$input" ] && [ "$input" = "y" ]; then
 	RESET=1
 fi
 
-docker build srcs/wordpress -t ft_services_wordpress
+docker build srcs/wordpress --rm -t ft-services-wordpress
 
 if [ $RESET == 1 ]; then
 	./srcs/reset.sh
@@ -37,7 +37,9 @@ if ! [ -f $WP_DOWNLOADING_PATH ]; then
 else 
 	echo "wordpress already exist ($WP_DOWNLOADING_PATH)"
 fi
-
+# docker run -d --restart=always -e DOMAIN=cluster --name wordpress-service -p 80:80 ft-services-wordpress
+# kubectl create deployment --image=ft-services-wordpress wordpress-service
+# kubectl set env deployment/wordpress-service  DOMAIN=cluster
 
 # /wordpress ----------------
 
