@@ -1,12 +1,16 @@
-FROM debian:buster
+FROM alpine:latest
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
+RUN apk update
+RUN apk upgrade
 
-RUN apt-get install apache2 -y
-
-RUN apt-get install libapache2-mod-php -y
-RUN apt-get install php-mysql -y
+RUN apk add apache2
+RUN apk add php7
+RUN apk add php7-fpm
+RUN apk add php7-opcache
+RUN apk add php7-gd
+RUN apk add php7-mysqli
+RUN apk add php7-zlib
+RUN apk add php7-curl
 
 WORKDIR /var/www/
 

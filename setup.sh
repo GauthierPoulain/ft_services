@@ -2,6 +2,7 @@
 RESET=0
 export WP_PORT=5050
 
+clear
 read -n1 -p "do you want to reset minikube ? [y/N] " input
 echo ""
 if [ -n "$input" ] && [ "$input" = "y" ]; then
@@ -42,9 +43,6 @@ docker build srcs/wordpress --rm -t ft-services-wordpress
 echo "pushing wordpress image to minikube..."
 minikube image load ft-services-wordpress
 kubectl apply -f srcs/wordpress/wordpress.yaml
-# docker run -d --restart=always -e DOMAIN=cluster --name wordpress-service -p 80:80 ft-services-wordpress
-# kubectl create deployment --image=ft-services-wordpress wordpress-service
-# kubectl set env deployment/wordpress-service  DOMAIN=cluster
 
 # /wordpress ----------------
 
