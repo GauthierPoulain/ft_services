@@ -33,11 +33,12 @@ fi
 # wordpress -----------------
 
 echo "downloading wordpress..."
-WP_DOWNLOADING_PATH=./srcs/wordpress/tmp/wordpress.tar.gz
-if ! [ -f $WP_DOWNLOADING_PATH ]; then
-	curl -Lo $WP_DOWNLOADING_PATH https://wordpress.org/latest.tar.gz
+WP_DOWNLOADING_PATH=./srcs/wordpress/tmp
+mkdir -p $WP_DOWNLOADING_PATH
+if ! [ -f $WP_DOWNLOADING_PATH/wordpress.tar.gz ]; then
+	curl -Lo $WP_DOWNLOADING_PATH/wordpress.tar.gz https://wordpress.org/latest.tar.gz
 else 
-	echo "wordpress already exist ($WP_DOWNLOADING_PATH)"
+	echo "wordpress already exist ($WP_DOWNLOADING_PATH/wordpress.tar.gz)"
 fi
 
 
