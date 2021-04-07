@@ -27,4 +27,4 @@ WORKDIR /
 
 EXPOSE 80
 
-CMD apachectl -D FOREGROUND
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
