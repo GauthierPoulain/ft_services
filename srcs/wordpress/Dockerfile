@@ -28,7 +28,7 @@ RUN chmod 777 /var/www/wordpress
 
 WORKDIR /
 
-EXPOSE 80 443
+EXPOSE 80
 
 COPY ./init.sh /init.sh
 

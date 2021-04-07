@@ -1,32 +1,36 @@
 #!/bin/bash
-RESET=0
-export WP_PORT=5050
-
 clear
-read -n1 -p "do you want to reset minikube ? [y/N] " input
-echo ""
-if [ -n "$input" ] && [ "$input" = "y" ]; then
-	RESET=1
-fi
 
+print_usage() {
+  echo "usage :"
+  echo "-r : reset minikube"
+}
 
-if [ $RESET == 1 ]; then
+reset_minikube() {
+	echo "minikube is cleaning up..."
 	minikube stop
 	minikube delete
-fi
+	echo "minikube is clean"
+}
+
+while getopts 'r' flag; do
+  case "${flag}" in
+    r) reset_minikube ;;
+    *) print_usage
+       exit 1 ;;
+  esac
+done
+
 minikube start
 eval $(minikube docker-env)
 
 # metallb -------------------
 
-if [ $RESET == 1 ]; then
-	kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
-fi
 kubectl apply -f srcs/metallb/namespace.yaml
 kubectl apply -f srcs/metallb/metallb.yaml
-if [ $RESET == 1 ]; then
-	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-fi
+
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+
 
 # /metallb ------------------
 
@@ -44,9 +48,10 @@ fi
 
 docker build srcs/wordpress --rm -t ft-services-wordpress
 echo "pushing wordpress image to minikube..."
-minikube image load ft-services-wordpress
 kubectl apply -f srcs/wordpress/wordpress.yaml
 
 # /wordpress ----------------
+
+kubectl apply -f srcs/metallb/config.yaml
 
 minikube dashboard
