@@ -15,6 +15,7 @@ if [ $RESET == 1 ]; then
 	minikube delete
 fi
 minikube start
+eval $(minikube docker-env)
 
 # metallb -------------------
 
@@ -38,6 +39,7 @@ if ! [ -f $WP_DOWNLOADING_PATH ]; then
 else 
 	echo "wordpress already exist ($WP_DOWNLOADING_PATH)"
 fi
+
 
 docker build srcs/wordpress --rm -t ft-services-wordpress
 echo "pushing wordpress image to minikube..."

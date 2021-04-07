@@ -25,4 +25,6 @@ RUN mv wordpress html
 
 WORKDIR /
 
+EXPOSE 80
+
 CMD apachectl -D FOREGROUND
