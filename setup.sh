@@ -49,4 +49,6 @@ run() {
 
 run
 
-minikube dashboard
+if [ $(ps | grep "minikube dashboard" | wc -l) -le 1 ]; then
+	minikube dashboard
+fi
