@@ -19,7 +19,7 @@ WORKDIR /var/www/
 
 RUN rm -rf *
 
-COPY ./tmp/wordpress.tar.gz wordpress.tar.gz
+COPY ./srcs/tmp/wordpress.tar.gz wordpress.tar.gz
 
 RUN tar -xf wordpress.tar.gz
 RUN rm -rf wordpress.tar.gz
@@ -30,8 +30,9 @@ WORKDIR /
 
 EXPOSE 80
 
-COPY ./init.sh /init.sh
+COPY ./srcs/init.sh /init.sh
 
-COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
+COPY ./srcs/wp-config.php /var/www/wordpress/wp-config.php
 
 ENTRYPOINT [ "sh", "init.sh" ]

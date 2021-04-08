@@ -26,11 +26,12 @@ kind: Service
 apiVersion: v1
 metadata:
   name: wordpress-service
+  annotations:
+    metallb.universe.tf/allow-shared-ip: shared
 spec:
   type: LoadBalancer
   selector:
     app: wordpress
-  externalTrafficPolicy: Cluster
   ports:
     - protocol: TCP
       port: 5050
