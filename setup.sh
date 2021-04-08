@@ -9,8 +9,8 @@ minikube ssh "docker login -u gapoulai -p motdepassesupersafe"
 metallb() {
 	kubectl apply -f srcs/metallb/namespace.yaml
 	kubectl apply -f srcs/metallb/metallb.yaml
-
 	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+	kubectl apply -f srcs/metallb/config.yaml
 }
 
 wordpress() {
@@ -43,7 +43,6 @@ run() {
 	metallb
 	nginx
 	wordpress
-	kubectl apply -f srcs/metallb/config.yaml
 	echo "ready to serve on $(minikube ip)"
 }
 
