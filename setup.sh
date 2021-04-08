@@ -1,5 +1,7 @@
 #!/bin/bash
 clear
+WP_DOWNLOADING_PATH=./srcs/wordpress/srcs/tmp
+PMA_DOWNLOADING_PATH=./srcs/phpmyadmin/srcs/tmp
 
 prepare()
 {
@@ -10,12 +12,18 @@ prepare()
 	minikube ssh "docker pull metallb/speaker:v0.9.6"
 	minikube ssh "docker pull alpine:3.12.3"
 	echo "downloading wordpress..."
-	WP_DOWNLOADING_PATH=./srcs/wordpress/srcs/tmp
 	mkdir -p $WP_DOWNLOADING_PATH
 	if ! [ -f $WP_DOWNLOADING_PATH/wordpress.tar.gz ]; then
 		curl -Lo $WP_DOWNLOADING_PATH/wordpress.tar.gz https://wordpress.org/latest.tar.gz
 	else
 		echo "wordpress already exist ($WP_DOWNLOADING_PATH/wordpress.tar.gz)"
+	fi
+	echo "downloading phpmyadmin..."
+	mkdir -p $PMA_DOWNLOADING_PATH
+	if ! [ -f $PMA_DOWNLOADING_PATH/phpMyAdmin-5.1.0-all-languages.zip ]; then
+		curl -Lo $PMA_DOWNLOADING_PATH/phpMyAdmin-5.1.0-all-languages.zip https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-all-languages.zip
+	else
+		echo "wordpress already exist ($PMA_DOWNLOADING_PATH/phpMyAdmin-5.1.0-all-languages.zip)"
 	fi
 }
 
@@ -24,6 +32,7 @@ build()
 	docker build srcs/wordpress --rm -t ft-services-wordpress
 	docker build srcs/nginx --rm -t ft-services-nginx
 	docker build srcs/mysql --rm -t ft-services-mysql
+	docker build srcs/phpmyadmin --rm -t ft-services-phpmyadmin
 }
 
 deploy(){
@@ -34,6 +43,7 @@ deploy(){
 	kubectl apply -f srcs/wordpress/wordpress.yaml
 	kubectl apply -f srcs/nginx/nginx.yaml
 	kubectl apply -f srcs/mysql/mysql.yaml
+	kubectl apply -f srcs/phpmyadmin/phpmyadmin.yaml
 }
 
 prepare
