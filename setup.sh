@@ -1,6 +1,7 @@
 #!/bin/bash
 clear
-minikube start --extra-config=apiserver.service-node-port-range=1-65535
+
+minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535
 
 eval $(minikube docker-env)
 minikube ssh "docker login -u gapoulai -p motdepassesupersafe"
@@ -10,7 +11,6 @@ metallb() {
 	kubectl apply -f srcs/metallb/metallb.yaml
 
 	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-	kubectl apply -f srcs/metallb/config.yaml
 }
 
 wordpress() {
@@ -35,18 +35,15 @@ nginx() {
 pull_images() {
 	minikube ssh "docker pull metallb/controller:v0.9.6"
 	minikube ssh "docker pull metallb/speaker:v0.9.6"
-	minikube ssh "docker pull alpine:latest"
+	minikube ssh "docker pull alpine:3.12.3"
 }
 
 run() {
-	# kubectl delete deployments --all
-	# kubectl delete pods --all
-	# kubectl delete services wordpress-service
-	# kubectl delete services nginx-service
 	pull_images
 	metallb
 	nginx
 	wordpress
+	kubectl apply -f srcs/metallb/config.yaml
 	echo "ready to serve on $(minikube ip)"
 }
 
