@@ -2,8 +2,8 @@ FROM alpine:3.12.3
 
 RUN apk update
 
-RUN apk add nginx
 RUN apk add openrc
+RUN apk add nginx
 RUN apk add php
 RUN apk add php7-fpm
 RUN apk add php7-mysqli
@@ -28,11 +28,11 @@ RUN chmod 777 /var/www/wordpress
 
 WORKDIR /
 
-EXPOSE 80
-
 COPY ./srcs/init.sh /init.sh
 
 COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
 COPY ./srcs/wp-config.php /var/www/wordpress/wp-config.php
+
+EXPOSE 80
 
 ENTRYPOINT [ "sh", "init.sh" ]

@@ -13,7 +13,7 @@ RUN touch /run/openrc/softlevel
 
 WORKDIR /
 
-COPY ./init.sh /init.sh
+COPY ./srcs/init.sh /init.sh
 
 EXPOSE 3306
 
