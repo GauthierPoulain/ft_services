@@ -3,8 +3,7 @@ clear
 WP_DOWNLOADING_PATH=./srcs/wordpress/srcs/tmp
 PMA_DOWNLOADING_PATH=./srcs/phpmyadmin/srcs/tmp
 
-prepare()
-{
+prepare() {
 	minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535
 	eval $(minikube docker-env)
 	minikube ssh "docker login -u gapoulai -p motdepassesupersafe"
@@ -27,22 +26,37 @@ prepare()
 	fi
 }
 
-build()
-{
+build() {
+	docker build srcs/influxdb --rm -t ft-services-influxdb
 	docker build srcs/wordpress --rm -t ft-services-wordpress
 	docker build srcs/nginx --rm -t ft-services-nginx
 	docker build srcs/mysql --rm -t ft-services-mysql
 	docker build srcs/phpmyadmin --rm -t ft-services-phpmyadmin
+	docker build srcs/grafana --rm -t ft-services-grafana
+}
+
+deploy() {
+	kubectl apply -f ./srcs/metallb/namespace.yaml
+	kubectl apply -f ./srcs/metallb/metallb.yaml
+	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+	kubectl apply -f ./srcs/metallb/config.yaml
+	kubectl apply -f ./srcs/grafana/influxdb.yaml
+	kubectl apply -f ./srcs/wordpress/wordpress.yaml
+	kubectl apply -f ./srcs/nginx/nginx.yaml
+	kubectl apply -f ./srcs/mysql/mysql.yaml
+	kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
+	kubectl apply -f ./srcs/grafana/grafana.yaml
 }
 
 prepare
 build
-./srcs/deploy.sh
+deploy
 
 echo "--------------------------------------------"
 echo "nginx main page: http://$(minikube ip)"
 echo "wordpress: http://$(minikube ip):5050 | http://$(minikube ip)/wordpress"
 echo "phpmyadmin: http://$(minikube ip):5000 | http://$(minikube ip)/phpmyadmin"
+echo "grafana: http://$(minikube ip):3000"
 echo "--------------------------------------------"
 
 minikube dashboard --url
