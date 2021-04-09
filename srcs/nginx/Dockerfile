@@ -5,6 +5,11 @@ RUN apk update
 RUN apk add openrc
 RUN apk add nginx
 
+RUN echo "http://nl.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+RUN apk add telegraf
+RUN mkdir /etc/telegraf 
+ADD srcs/telegraf.conf /etc/telegraf/
+
 RUN mkdir -p /run/nginx
 RUN mkdir -p /run/openrc
 RUN touch /run/openrc/softlevel

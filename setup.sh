@@ -5,6 +5,7 @@ PMA_DOWNLOADING_PATH=./srcs/phpmyadmin/srcs/tmp
 
 prepare() {
 	minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535
+	minikube addons enable metrics-server
 	eval $(minikube docker-env)
 	minikube ssh "docker login -u gapoulai -p motdepassesupersafe"
 	minikube ssh "docker pull metallb/controller:v0.9.6"
