@@ -25,6 +25,7 @@ prepare() {
 	else
 		echo "phpmyadmin already exist ($PMA_DOWNLOADING_PATH/phpMyAdmin-5.1.0-all-languages.zip)"
 	fi
+	./srcs/ca-cert-manager.sh
 }
 
 build() {
