@@ -1,7 +1,6 @@
 #!/bin/bash
 clear
 WP_DOWNLOADING_PATH=./srcs/wordpress/srcs/tmp
-PMA_DOWNLOADING_PATH=./srcs/phpmyadmin/srcs/tmp
 
 prepare()
 {
@@ -18,13 +17,6 @@ prepare()
 	else
 		echo "wordpress already exist ($WP_DOWNLOADING_PATH/wordpress.tar.gz)"
 	fi
-	echo "downloading phpmyadmin..."
-	mkdir -p $PMA_DOWNLOADING_PATH
-	if ! [ -f $PMA_DOWNLOADING_PATH/phpMyAdmin-5.1.0-all-languages.zip ]; then
-		curl -Lo $PMA_DOWNLOADING_PATH/phpMyAdmin-5.1.0-all-languages.zip https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-all-languages.zip
-	else
-		echo "wordpress already exist ($PMA_DOWNLOADING_PATH/phpMyAdmin-5.1.0-all-languages.zip)"
-	fi
 }
 
 build()
@@ -35,22 +27,12 @@ build()
 	docker build srcs/phpmyadmin --rm -t ft-services-phpmyadmin
 }
 
-deploy(){
-	kubectl apply -f srcs/metallb/namespace.yaml
-	kubectl apply -f srcs/metallb/metallb.yaml
-	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-	kubectl apply -f srcs/metallb/config.yaml
-	kubectl apply -f srcs/wordpress/wordpress.yaml
-	kubectl apply -f srcs/nginx/nginx.yaml
-	kubectl apply -f srcs/mysql/mysql.yaml
-	kubectl apply -f srcs/phpmyadmin/phpmyadmin.yaml
-}
-
 prepare
 build
-deploy
+./srcs/deploy.sh
 
 echo "nginx main page: http://$(minikube ip)"
 echo "wordpress: http://$(minikube ip):5050 | http://$(minikube ip)/wordpress"
+echo "phpmyadmin: http://$(minikube ip):5000 | http://$(minikube ip)/phpmyadmin"
 
 minikube dashboard --url

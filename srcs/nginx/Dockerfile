@@ -17,6 +17,6 @@ COPY ./srcs/init.sh /init.sh
 
 COPY ./srcs/default.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+EXPOSE 80 443 22
 
 ENTRYPOINT [ "sh", "init.sh" ]

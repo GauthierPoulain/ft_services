@@ -5,7 +5,7 @@ metadata:
   labels:
     app: wordpress
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: wordpress
@@ -19,7 +19,7 @@ spec:
           image: ft-services-wordpress:latest
           imagePullPolicy: Never
           ports:
-            - containerPort: 80
+            - containerPort: 5050
 
 ---
 kind: Service
@@ -35,5 +35,5 @@ spec:
   ports:
     - protocol: TCP
       port: 5050
-      targetPort: 80
+      targetPort: 5050
       nodePort: 5050
