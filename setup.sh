@@ -40,7 +40,7 @@ deploy() {
 	kubectl apply -f ./srcs/metallb/metallb.yaml
 	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 	kubectl apply -f ./srcs/metallb/config.yaml
-	kubectl apply -f ./srcs/grafana/influxdb.yaml
+	kubectl apply -f ./srcs/influxdb/influxdb.yaml
 	kubectl apply -f ./srcs/wordpress/wordpress.yaml
 	kubectl apply -f ./srcs/nginx/nginx.yaml
 	kubectl apply -f ./srcs/mysql/mysql.yaml

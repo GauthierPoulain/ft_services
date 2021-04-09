@@ -1,3 +1,4 @@
+#!/bin/sh
 check_service() {
 	for var in "$@"; do
 		if [ $(/usr/bin/pgrep $var | wc -l) == 0 ]; then
@@ -6,8 +7,8 @@ check_service() {
 	done
 }
 
-rc-service influxdb start
 telegraf &
+rc-service influxdb start
 
 sleep 5
 
