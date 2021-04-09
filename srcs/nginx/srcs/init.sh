@@ -1,2 +1,6 @@
 rc-service nginx start
-tail -f /var/log/nginx/access.log -f /var/log/nginx/error.log
+
+while [ $(/usr/bin/pgrep nginx | wc -l)  -gt 0 ]
+do
+	sleep 2
+done

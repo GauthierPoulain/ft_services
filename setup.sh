@@ -31,8 +31,10 @@ prepare
 build
 ./srcs/deploy.sh
 
+echo "--------------------------------------------"
 echo "nginx main page: http://$(minikube ip)"
 echo "wordpress: http://$(minikube ip):5050 | http://$(minikube ip)/wordpress"
 echo "phpmyadmin: http://$(minikube ip):5000 | http://$(minikube ip)/phpmyadmin"
+echo "--------------------------------------------"
 
 minikube dashboard --url

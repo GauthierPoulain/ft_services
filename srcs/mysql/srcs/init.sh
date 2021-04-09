@@ -9,10 +9,6 @@ mysql -u root -e "exit"
 sed -i "s|.*skip-networking.*|#skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
 service mariadb restart
 
-while true;
-do
-	if ! pgrep mysql >/dev/null 2>&1 ; then
-		exit 1
-	fi
+while [ $(/usr/bin/pgrep mysql | wc -l) -gt 0 ]; do
 	sleep 2
 done

@@ -13,6 +13,9 @@ RUN mkdir -p /run/nginx
 RUN mkdir -p /run/openrc
 RUN touch /run/openrc/softlevel
 
+RUN mkdir -p /usr/share/webapps/phpmyadmin/tmp/
+RUN chmod 777 /usr/share/webapps/phpmyadmin/tmp
+
 RUN rc-status 2> /dev/null
 
 WORKDIR /var/www/

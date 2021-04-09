@@ -1,3 +1,10 @@
 rc-service php-fpm7 start
 rc-service nginx start
-tail -f /var/log/nginx/access.log -f /var/log/nginx/error.log
+
+while [ $(/usr/bin/pgrep nginx | wc -l) -gt 0 ]; do
+	if [ $(/usr/bin/pgrep php-fpm | wc -l) -gt 0 ]; then
+		sleep 2
+	else
+		exit 1
+	fi
+done
