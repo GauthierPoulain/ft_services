@@ -2,11 +2,16 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $DIR
 
-./restart.sh ./metallb/namespace.yaml
-./restart.sh ./metallb/metallb.yaml
+apply()
+{
+	kubectl apply -f $1
+}
+
+apply ./metallb/namespace.yaml
+apply ./metallb/metallb.yaml
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
-./restart.sh ./metallb/config.yaml
-./restart.sh ./wordpress/wordpress.yaml
-./restart.sh ./nginx/nginx.yaml
-./restart.sh ./mysql/mysql.yaml
-./restart.sh ./phpmyadmin/phpmyadmin.yaml
+apply ./metallb/config.yaml
+apply ./wordpress/wordpress.yaml
+apply ./nginx/nginx.yaml
+apply ./mysql/mysql.yaml
+apply ./phpmyadmin/phpmyadmin.yaml

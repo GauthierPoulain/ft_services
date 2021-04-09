@@ -1,6 +1,8 @@
 rc-service php-fpm7 start
 rc-service nginx start
 
+sleep 5
+
 while [ $(/usr/bin/pgrep nginx | wc -l) -gt 0 ]; do
 	if [ $(/usr/bin/pgrep php-fpm | wc -l) -gt 0 ]; then
 		sleep 2

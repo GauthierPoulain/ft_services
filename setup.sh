@@ -1,6 +1,7 @@
 #!/bin/bash
 clear
 WP_DOWNLOADING_PATH=./srcs/wordpress/srcs/tmp
+PMA_DOWNLOADING_PATH=./srcs/phpmyadmin/srcs/tmp
 
 prepare()
 {
@@ -16,6 +17,13 @@ prepare()
 		curl -Lo $WP_DOWNLOADING_PATH/wordpress.tar.gz https://wordpress.org/latest.tar.gz
 	else
 		echo "wordpress already exist ($WP_DOWNLOADING_PATH/wordpress.tar.gz)"
+	fi
+	echo "downloading phpmyadmin..."
+	mkdir -p $PMA_DOWNLOADING_PATH
+	if ! [ -f $PMA_DOWNLOADING_PATH/phpMyAdmin-5.1.0-all-languages.zip ]; then
+		curl -Lo $PMA_DOWNLOADING_PATH/phpMyAdmin-5.1.0-all-languages.zip https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-all-languages.zip
+	else
+		echo "phpmyadmin already exist ($PMA_DOWNLOADING_PATH/phpMyAdmin-5.1.0-all-languages.zip)"
 	fi
 }
 
