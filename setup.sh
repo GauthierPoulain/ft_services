@@ -29,12 +29,15 @@ prepare() {
 }
 
 build() {
+	IP=$(minikube ip)
+	
 	docker build srcs/influxdb --rm -t ft-services-influxdb
 	docker build srcs/wordpress --rm -t ft-services-wordpress
 	docker build srcs/nginx --rm -t ft-services-nginx
 	docker build srcs/mysql --rm -t ft-services-mysql
 	docker build srcs/phpmyadmin --rm -t ft-services-phpmyadmin
 	docker build srcs/grafana --rm -t ft-services-grafana
+	docker build srcs/ftps --rm -t ft-services-ftps --build-arg IP=${IP}
 }
 
 deploy() {
@@ -48,6 +51,7 @@ deploy() {
 	kubectl apply -f ./srcs/mysql/mysql.yaml
 	kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
 	kubectl apply -f ./srcs/grafana/grafana.yaml
+	kubectl apply -f ./srcs/ftps/ftps.yaml
 }
 
 prepare
