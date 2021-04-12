@@ -4,8 +4,9 @@ WP_DOWNLOADING_PATH=./srcs/wordpress/srcs/tmp
 PMA_DOWNLOADING_PATH=./srcs/phpmyadmin/srcs/tmp
 
 prepare() {
-	minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535
+	minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535 --memory=4g --cpus=2
 	minikube addons enable metrics-server
+	minikube addons enable dashboard
 	eval $(minikube docker-env)
 	minikube ssh "docker login -u gapoulai -p motdepassesupersafe"
 	minikube ssh "docker pull metallb/controller:v0.9.6"
@@ -46,10 +47,10 @@ deploy() {
 	kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 	kubectl apply -f ./srcs/metallb/config.yaml
 	kubectl apply -f ./srcs/influxdb/influxdb.yaml
-	kubectl apply -f ./srcs/wordpress/wordpress.yaml
-	kubectl apply -f ./srcs/nginx/nginx.yaml
 	kubectl apply -f ./srcs/mysql/mysql.yaml
+	kubectl apply -f ./srcs/wordpress/wordpress.yaml
 	kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
+	kubectl apply -f ./srcs/nginx/nginx.yaml
 	kubectl apply -f ./srcs/grafana/grafana.yaml
 	kubectl apply -f ./srcs/ftps/ftps.yaml
 }
