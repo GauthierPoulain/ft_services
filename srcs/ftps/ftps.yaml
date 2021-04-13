@@ -31,10 +31,12 @@ metadata:
     app: ftps
 spec:
   type: LoadBalancer
+  selector:
+    app: ftps
   ports:
     - name: ftps
       port: 21
       protocol: TCP
       targetPort: 21
-  selector:
-    app: ftps
+  externalIPs:
+    - {{MINIKUBEIP}}

@@ -7,6 +7,7 @@ prepare() {
 	minikube start --vm-driver=virtualbox --extra-config=apiserver.service-node-port-range=1-65535 --memory=4g --cpus=2
 	minikube addons enable metrics-server
 	minikube addons enable dashboard
+	minikube addons enable metallb
 	eval $(minikube docker-env)
 	minikube ssh "docker login -u gapoulai -p motdepassesupersafe"
 	minikube ssh "docker pull metallb/controller:v0.9.6"
@@ -31,7 +32,7 @@ prepare() {
 
 build() {
 	IP=$(minikube ip)
-	
+
 	docker build srcs/influxdb --rm -t ft-services-influxdb
 	docker build srcs/wordpress --rm -t ft-services-wordpress
 	docker build srcs/nginx --rm -t ft-services-nginx
@@ -41,6 +42,14 @@ build() {
 	docker build srcs/ftps --rm -t ft-services-ftps --build-arg IP=${IP}
 }
 
+patch()
+{
+	PATCHED=`cat ./srcs/nginx/nginx.yaml | sed "s/{{MINIKUBEIP}}/$(minikube ip)/g"`
+
+	PATCHED=`cat $1 | sed "s/{{MINIKUBEIP}}/$(minikube ip)/g"`
+	echo $PATCHED | kubectl apply -f -
+}
+
 deploy() {
 	kubectl apply -f ./srcs/metallb/namespace.yaml
 	kubectl apply -f ./srcs/metallb/metallb.yaml
@@ -48,11 +57,12 @@ deploy() {
 	kubectl apply -f ./srcs/metallb/config.yaml
 	kubectl apply -f ./srcs/influxdb/influxdb.yaml
 	kubectl apply -f ./srcs/mysql/mysql.yaml
-	kubectl apply -f ./srcs/wordpress/wordpress.yaml
-	kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
-	kubectl apply -f ./srcs/nginx/nginx.yaml
-	kubectl apply -f ./srcs/grafana/grafana.yaml
-	kubectl apply -f ./srcs/ftps/ftps.yaml
+	#kubectl apply -f ./srcs/wordpress/wordpress.yaml
+	patch ./srcs/phpmyadmin/phpmyadmin.yaml
+	patch ./srcs/nginx/nginx.yaml
+	patch ./srcs/grafana/grafana.yaml
+	patch ./srcs/ftps/ftps.yaml
+	patch ./srcs/wordpress/wordpress.yaml
 }
 
 prepare
