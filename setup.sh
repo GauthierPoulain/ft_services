@@ -9,8 +9,6 @@ prepare() {
 	minikube addons enable dashboard
 	eval $(minikube docker-env)
 	minikube ssh "docker login -u gapoulai -p motdepassesupersafe"
-	minikube ssh "docker pull metallb/controller:v0.9.6"
-	minikube ssh "docker pull metallb/speaker:v0.9.6"
 	minikube ssh "docker pull alpine:3.12.3"
 	echo "downloading wordpress..."
 	mkdir -p $WP_DOWNLOADING_PATH

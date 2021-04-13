@@ -22,7 +22,7 @@ RUN rc-status 2> /dev/null
 RUN apk add pure-ftpd --repository http://dl-3.alpinelinux.org/alpine/edge/testing/
 
 RUN adduser -D "admin"
-RUN echo "admin:admin" | chpasswd
+RUN echo "admin:admin" | chpasswd 2>/dev/null
 
 RUN echo 'FTP of ft_services by tmarx' > /hello.txt
 
