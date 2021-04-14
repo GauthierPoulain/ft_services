@@ -10,13 +10,9 @@ expect {
 
 "*IP*" { send -- "$ip\r" }
 
-"*End*" { send -- "$ip\r" }
-
 }
 
 expect {
-
-"*IP*" { send -- "$ip\r" }
 
 "*End*" { send -- "$ip\r" }
 
