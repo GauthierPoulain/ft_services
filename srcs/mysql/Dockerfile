@@ -19,6 +19,7 @@ ADD srcs/telegraf.conf /etc/telegraf/
 WORKDIR /
 
 COPY ./srcs/init.sh /init.sh
+COPY ./srcs/wordpress.sql /wordpress.sql
 
 EXPOSE 3306
 
