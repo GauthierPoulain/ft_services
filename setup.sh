@@ -27,6 +27,7 @@ prepare() {
 	./srcs/ca-cert-manager.sh
 	minikube addons enable metallb
 	./srcs/metallb.sh $(minikube ip) 2>/dev/null
+	minikube ip > ./srcs/ftps/ip.txt
 }
 
 build() {
@@ -38,7 +39,7 @@ build() {
 	docker build srcs/mysql --rm -t ft-services-mysql
 	docker build srcs/phpmyadmin --rm -t ft-services-phpmyadmin
 	docker build srcs/grafana --rm -t ft-services-grafana
-	docker build srcs/ftps --rm -t ft-services-ftps --build-arg IP=${IP}
+	docker build srcs/ftps --rm -t ft-services-ftps
 }
 
 deploy() {

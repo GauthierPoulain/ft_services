@@ -8,7 +8,7 @@ check_service() {
 }
 
 telegraf &
-pure-ftpd -P $(cat ip.txt) &
+pure-ftpd -P $(cat /ip.txt) &
 
 sleep 5
 
