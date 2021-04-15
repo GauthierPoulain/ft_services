@@ -9,15 +9,10 @@ RUN touch /run/openrc/softlevel
 RUN rc-status 2> /dev/null
 ADD srcs/telegraf.conf /etc/telegraf/
 
-
-RUN mkdir -p /run/nginx
-
-RUN apk add pure-ftpd --repository http://dl-3.alpinelinux.org/alpine/edge/testing/
+RUN apk add vsftpd
 
 RUN adduser -D "admin"
 RUN echo "admin:admin" | chpasswd 2>/dev/null
-
-RUN echo 'FTP of ft_services by tmarx' > /hello.txt
 
 WORKDIR /
 
@@ -25,8 +20,10 @@ ADD ./srcs/vsftpd.conf /etc/vsftpd/
 
 ADD ./ip.txt /ip.txt
 
+RUN echo "pasv_address=$(cat /ip.txt)" >> /etc/vsftpd/vsftpd.conf
+
 COPY ./srcs/init.sh /init.sh
 
-EXPOSE 21
+EXPOSE 20 21 30020 30021
 
 ENTRYPOINT [ "sh", "init.sh" ]

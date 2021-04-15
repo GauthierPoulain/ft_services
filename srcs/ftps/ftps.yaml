@@ -2,7 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ftps-deploy
+  labels:
+    app: ftps
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: ftps
@@ -29,14 +32,24 @@ metadata:
   name: ftps-service
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
-  labels:
-    app: ftps
 spec:
   type: LoadBalancer
   selector:
     app: ftps
   ports:
     - name: ftps
-      port: 21
       protocol: TCP
+      port: 21
       targetPort: 21
+    - name: ftp20
+      protocol: TCP
+      port: 20
+      targetPort: 20
+    - name: ftp30020
+      protocol: TCP
+      port: 30020
+      targetPort: 30020
+    - name: ftp30021
+      protocol: TCP
+      port: 30021
+      targetPort: 30021

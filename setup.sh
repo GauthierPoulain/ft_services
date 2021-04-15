@@ -53,17 +53,9 @@ deploy() {
 	kubectl apply -f ./srcs/wordpress/wordpress.yaml
 }
 
-restart()
-{
-	kubectl scale deployment $1-deploy --replicas=0
-	kubectl scale deployment $1-deploy --replicas=1
-}
-
 prepare
 build
 deploy
-restart mysql
-restart influxdb
 
 echo "--------------------------------------------"
 echo "nginx main page: http://$(minikube ip)"

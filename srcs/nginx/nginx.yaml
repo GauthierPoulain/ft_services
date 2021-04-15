@@ -25,7 +25,6 @@ spec:
         - name: secret-volume
           secret:
             secretName: ft-services-tls
-
 ---
 apiVersion: v1
 kind: Service

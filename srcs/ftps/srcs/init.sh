@@ -8,11 +8,11 @@ check_service() {
 }
 
 telegraf &
-pure-ftpd -P $(cat /ip.txt) &
+rc-service vsftpd start
 
 sleep 5
 
 while true; do
-	check_service telegraf pure-ftpd
+	check_service telegraf vsftpd
 	sleep 2
 done
