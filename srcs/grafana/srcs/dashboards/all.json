@@ -15,7 +15,7 @@
 	"editable": true,
 	"gnetId": null,
 	"graphTooltip": 0,
-	"id": 7,
+	"id": 2,
 	"links": [],
 	"panels": [
 	  {
@@ -32,6 +32,10 @@
 				{
 				  "color": "green",
 				  "value": null
+				},
+				{
+				  "color": "#EAB839",
+				  "value": 60
 				},
 				{
 				  "color": "red",
@@ -1008,13 +1012,17 @@
 		"type": "bargauge"
 	  },
 	  {
-		"aliasColors": {},
+		"aliasColors": {
+		  "others": "rgb(41, 41, 41)"
+		},
 		"bars": true,
 		"dashLength": 10,
 		"dashes": false,
 		"datasource": "telegraf",
 		"fieldConfig": {
-		  "defaults": {},
+		  "defaults": {
+			"unit": "percent"
+		  },
 		  "overrides": []
 		},
 		"fill": 5,
@@ -1047,7 +1055,12 @@
 		"pointradius": 2,
 		"points": false,
 		"renderer": "flot",
-		"seriesOverrides": [],
+		"seriesOverrides": [
+		  {
+			"alias": "others",
+			"yaxis": 1
+		  }
+		],
 		"spaceLength": 10,
 		"stack": true,
 		"steppedLine": true,
@@ -1410,6 +1423,95 @@
 				"value": "wordpress"
 			  }
 			]
+		  },
+		  {
+			"alias": "others",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_cpu",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"query": "SELECT\n  sum(\"usage_percent\")\nFROM\n  \"docker_container_cpu\"\nWHERE\n  (\n    \"io.kubernetes.container.name\" != 'ftps'\n    AND \"io.kubernetes.container.name\" != 'grafana'\n    AND \"io.kubernetes.container.name\" != 'influxdb'\n    AND \"io.kubernetes.container.name\" != 'mysql'\n    AND \"io.kubernetes.container.name\" != 'nginx'\n    AND \"io.kubernetes.container.name\" != 'phpmyadmin'\n    AND \"io.kubernetes.container.name\" != 'telegraf'\n    AND \"io.kubernetes.container.name\" != 'wordpress'\n  )\n  AND $ timeFilter\nGROUP BY\n  time(10s) fill(null)\n",
+			"queryType": "randomWalk",
+			"rawQuery": false,
+			"refId": "I",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"usage_percent"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "!=",
+				"value": "ftps"
+			  },
+			  {
+				"condition": "AND",
+				"key": "io.kubernetes.container.name",
+				"operator": "!=",
+				"value": "grafana"
+			  },
+			  {
+				"condition": "AND",
+				"key": "io.kubernetes.container.name",
+				"operator": "!=",
+				"value": "influxdb"
+			  },
+			  {
+				"condition": "AND",
+				"key": "io.kubernetes.container.name",
+				"operator": "!=",
+				"value": "mysql"
+			  },
+			  {
+				"condition": "AND",
+				"key": "io.kubernetes.container.name",
+				"operator": "!=",
+				"value": "nginx"
+			  },
+			  {
+				"condition": "AND",
+				"key": "io.kubernetes.container.name",
+				"operator": "!=",
+				"value": "phpmyadmin"
+			  },
+			  {
+				"condition": "AND",
+				"key": "io.kubernetes.container.name",
+				"operator": "!=",
+				"value": "telegraf"
+			  },
+			  {
+				"condition": "AND",
+				"key": "io.kubernetes.container.name",
+				"operator": "!=",
+				"value": "wordpress"
+			  }
+			]
 		  }
 		],
 		"thresholds": [],
@@ -1440,7 +1542,7 @@
 			"show": true
 		  },
 		  {
-			"format": "short",
+			"format": "percent",
 			"label": null,
 			"logBase": 1,
 			"max": null,
