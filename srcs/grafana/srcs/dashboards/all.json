@@ -19,6 +19,179 @@
 	"links": [],
 	"panels": [
 	  {
+		"datasource": "telegraf",
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "thresholds"
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				},
+				{
+				  "color": "red",
+				  "value": 80
+				}
+			  ]
+			},
+			"unit": "percent"
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 8,
+		  "w": 5,
+		  "x": 0,
+		  "y": 0
+		},
+		"id": 7,
+		"options": {
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "showThresholdLabels": false,
+		  "showThresholdMarkers": true,
+		  "text": {}
+		},
+		"pluginVersion": "7.5.3",
+		"targets": [
+		  {
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"measurement": "docker_container_cpu",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "A",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"usage_percent"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": []
+		  }
+		],
+		"title": "CPU usage",
+		"type": "gauge"
+	  },
+	  {
+		"datasource": "telegraf",
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "thresholds"
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				}
+			  ]
+			},
+			"unit": "decbytes"
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 8,
+		  "w": 12,
+		  "x": 5,
+		  "y": 0
+		},
+		"id": 9,
+		"options": {
+		  "colorMode": "value",
+		  "graphMode": "area",
+		  "justifyMode": "auto",
+		  "orientation": "auto",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "text": {},
+		  "textMode": "auto"
+		},
+		"pluginVersion": "7.5.3",
+		"targets": [
+		  {
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"measurement": "docker_container_mem",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "A",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"usage"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": []
+		  }
+		],
+		"title": "RAM usage",
+		"type": "stat"
+	  },
+	  {
 		"aliasColors": {},
 		"bars": true,
 		"dashLength": 10,
@@ -34,7 +207,7 @@
 		  "h": 9,
 		  "w": 22,
 		  "x": 0,
-		  "y": 0
+		  "y": 8
 		},
 		"hiddenSeries": false,
 		"id": 2,
@@ -486,10 +659,10 @@
 		  "overrides": []
 		},
 		"gridPos": {
-		  "h": 8,
+		  "h": 9,
 		  "w": 22,
 		  "x": 0,
-		  "y": 9
+		  "y": 17
 		},
 		"id": 4,
 		"options": {
@@ -894,10 +1067,10 @@
 		  "overrides": []
 		},
 		"gridPos": {
-		  "h": 8,
+		  "h": 9,
 		  "w": 22,
 		  "x": 0,
-		  "y": 17
+		  "y": 26
 		},
 		"id": 5,
 		"options": {
@@ -1296,5 +1469,5 @@
 	"timezone": "",
 	"title": "all",
 	"uid": "K5W13TuMz",
-	"version": 1
+	"version": 2
   }
