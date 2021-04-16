@@ -27,17 +27,17 @@ prepare() {
 	./srcs/ca-cert-manager.sh
 	minikube addons enable metallb
 	./srcs/metallb.sh $(minikube ip) 2>/dev/null
-	minikube ip > ./srcs/ftps/ip.txt
+	minikube ip >./srcs/ftps/ip.txt
 }
 
 build() {
-	docker build srcs/ftps			--rm -t ft-services-ftps
-	docker build srcs/grafana		--rm -t ft-services-grafana
-	docker build srcs/influxdb		--rm -t ft-services-influxdb
-	docker build srcs/nginx			--rm -t ft-services-nginx
-	docker build srcs/mysql			--rm -t ft-services-mysql
-	docker build srcs/phpmyadmin	--rm -t ft-services-phpmyadmin
-	docker build srcs/wordpress		--rm -t ft-services-wordpress
+	docker build srcs/ftps --rm -t ft-services-ftps
+	docker build srcs/grafana --rm -t ft-services-grafana
+	docker build srcs/influxdb --rm -t ft-services-influxdb
+	docker build srcs/nginx --rm -t ft-services-nginx
+	docker build srcs/mysql --rm -t ft-services-mysql
+	docker build srcs/phpmyadmin --rm -t ft-services-phpmyadmin
+	docker build srcs/wordpress --rm -t ft-services-wordpress
 }
 
 deploy() {
