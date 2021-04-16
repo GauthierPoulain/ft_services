@@ -66,7 +66,7 @@
 		"steppedLine": false,
 		"targets": [
 		  {
-			"alias": "grafana",
+			"alias": "ftps",
 			"groupBy": [
 			  {
 				"params": [
@@ -105,7 +105,7 @@
 			  {
 				"key": "io.kubernetes.container.name",
 				"operator": "=",
-				"value": "grafana"
+				"value": "ftps"
 			  }
 			]
 		  }
@@ -241,7 +241,7 @@
 			  {
 				"key": "io.kubernetes.container.name",
 				"operator": "=",
-				"value": "grafana"
+				"value": "ftps"
 			  }
 			]
 		  }
@@ -333,7 +333,7 @@
 			  {
 				"key": "io.kubernetes.container.name",
 				"operator": "=",
-				"value": "grafana"
+				"value": "ftps"
 			  }
 			]
 		  }
@@ -425,7 +425,7 @@
 			  {
 				"key": "io.kubernetes.container.name",
 				"operator": "=",
-				"value": "grafana"
+				"value": "ftps"
 			  }
 			]
 		  }
@@ -447,7 +447,7 @@
 	},
 	"timepicker": {},
 	"timezone": "",
-	"title": "grafana",
-	"uid": "9HX1XouGz",
+	"title": "ftps",
+	"uid": "SRMOuoXMo",
 	"version": 2
   }
