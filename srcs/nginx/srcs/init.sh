@@ -7,12 +7,11 @@ check_service() {
 	done
 }
 
-telegraf &
 rc-service nginx start
 
 sleep 5
 
 while true; do
-	check_service nginx telegraf
+	check_service nginx
 	sleep 2
 done

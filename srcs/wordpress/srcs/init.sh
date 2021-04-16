@@ -7,13 +7,12 @@ check_service() {
 	done
 }
 
-telegraf &
 rc-service php-fpm7 start
 rc-service nginx start
 
 sleep 5
 
 while true; do
-	check_service nginx php-fpm telegraf
+	check_service nginx php-fpm
 	sleep 2
 done

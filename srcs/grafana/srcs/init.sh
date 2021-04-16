@@ -7,12 +7,11 @@ check_service() {
 	done
 }
 
-telegraf &
 /usr/sbin/grafana-server --homepath=/usr/share/grafana
 
 sleep 5
 
 while true; do
-	check_service grafana-server telegraf
+	check_service grafana-server
 	sleep 2
 done

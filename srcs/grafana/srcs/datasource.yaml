@@ -1,43 +1,6 @@
 apiVersion: 1
 datasources:
-  - name: ftps
     type: influxdb
     access: proxy
     url: http://influxdb-service:8086
-    database: ftps
-
-  - name: grafana
-    type: influxdb
-    access: proxy
-    url: http://influxdb-service:8086
-    database: grafana
-
-  - name: influxdb
-    type: influxdb
-    access: proxy
-    url: http://influxdb-service:8086
-    database: influxdb
-
-  - name: mysql
-    type: influxdb
-    access: proxy
-    url: http://influxdb-service:8086
-    database: mysql
-
-  - name: nginx
-    type: influxdb
-    access: proxy
-    url: http://influxdb-service:8086
-    database: nginx
-
-  - name: phpmyadmin
-    type: influxdb
-    access: proxy
-    url: http://influxdb-service:8086
-    database: phpmyadmin
-
-  - name: wordpress
-    type: influxdb
-    access: proxy
-    url: http://influxdb-service:8086
-    database: wordpress
+    database: telegraf

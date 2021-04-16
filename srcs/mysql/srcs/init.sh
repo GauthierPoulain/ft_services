@@ -7,7 +7,6 @@ check_service() {
 	done
 }
 
-telegraf &
 /etc/init.d/mariadb setup
 service mariadb start
 
@@ -26,6 +25,6 @@ fi
 sleep 5
 
 while true; do
-	check_service mysql telegraf
+	check_service mysql
 	sleep 2
 done

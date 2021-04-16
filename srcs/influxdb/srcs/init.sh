@@ -7,12 +7,11 @@ check_service() {
 	done
 }
 
-telegraf &
 rc-service influxdb start
 
 sleep 5
 
 while true; do
-	check_service influx telegraf
+	check_service influx
 	sleep 2
 done

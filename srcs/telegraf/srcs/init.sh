@@ -7,12 +7,11 @@ check_service() {
 	done
 }
 
-rc-service php-fpm7 start
-rc-service nginx start
+telegraf &
 
 sleep 5
 
 while true; do
-	check_service nginx php-fpm
+	check_service telegraf
 	sleep 2
 done

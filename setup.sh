@@ -37,6 +37,7 @@ build() {
 	docker build srcs/nginx --rm -t ft-services-nginx
 	docker build srcs/mysql --rm -t ft-services-mysql
 	docker build srcs/phpmyadmin --rm -t ft-services-phpmyadmin
+	docker build srcs/telegraf --rm -t ft-services-telegraf
 	docker build srcs/wordpress --rm -t ft-services-wordpress
 }
 
@@ -48,6 +49,7 @@ deploy() {
 	kubectl apply -f ./srcs/nginx/nginx.yaml
 	kubectl apply -f ./srcs/phpmyadmin/phpmyadmin.yaml
 	kubectl apply -f ./srcs/wordpress/wordpress.yaml
+	kubectl apply -f ./srcs/telegraf/telegraf.yaml
 }
 
 prepare

@@ -7,12 +7,11 @@ check_service() {
 	done
 }
 
-telegraf &
 rc-service vsftpd start
 
 sleep 5
 
 while true; do
-	check_service telegraf vsftpd
+	check_service vsftpd
 	sleep 2
 done
