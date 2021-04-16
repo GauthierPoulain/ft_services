@@ -66,7 +66,7 @@
 		"steppedLine": false,
 		"targets": [
 		  {
-			"alias": "wordpress",
+			"alias": "telegraf",
 			"groupBy": [
 			  {
 				"params": [
@@ -105,7 +105,7 @@
 			  {
 				"key": "io.kubernetes.container.name",
 				"operator": "=",
-				"value": "wordpress"
+				"value": "telegraf"
 			  }
 			]
 		  }
@@ -241,7 +241,7 @@
 			  {
 				"key": "io.kubernetes.container.name",
 				"operator": "=",
-				"value": "wordpress"
+				"value": "telegraf"
 			  }
 			]
 		  }
@@ -333,7 +333,7 @@
 			  {
 				"key": "io.kubernetes.container.name",
 				"operator": "=",
-				"value": "wordpress"
+				"value": "telegraf"
 			  }
 			]
 		  }
@@ -425,7 +425,7 @@
 			  {
 				"key": "io.kubernetes.container.name",
 				"operator": "=",
-				"value": "wordpress"
+				"value": "telegraf"
 			  }
 			]
 		  }
@@ -447,7 +447,7 @@
 	},
 	"timepicker": {},
 	"timezone": "",
-	"title": "wordpress",
-	"uid": "SRMOuoXMk",
+	"title": "telegraf",
+	"uid": "SRuiuoXMk",
 	"version": 2
   }

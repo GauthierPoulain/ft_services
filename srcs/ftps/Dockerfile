@@ -22,6 +22,6 @@ RUN echo "pasv_address=$(cat /ip.txt)" >> /etc/vsftpd/vsftpd.conf
 
 COPY ./srcs/init.sh /init.sh
 
-EXPOSE 20 21 30020 30021
+EXPOSE 21 30020 30021
 
 ENTRYPOINT [ "sh", "init.sh" ]

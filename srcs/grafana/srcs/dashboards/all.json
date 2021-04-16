@@ -15,7 +15,7 @@
 	"editable": true,
 	"gnetId": null,
 	"graphTooltip": 0,
-	"id": 9,
+	"id": 7,
 	"links": [],
 	"panels": [
 	  {
@@ -45,7 +45,7 @@
 		},
 		"gridPos": {
 		  "h": 8,
-		  "w": 5,
+		  "w": 4,
 		  "x": 0,
 		  "y": 0
 		},
@@ -128,8 +128,8 @@
 		},
 		"gridPos": {
 		  "h": 8,
-		  "w": 12,
-		  "x": 5,
+		  "w": 4,
+		  "x": 4,
 		  "y": 0
 		},
 		"id": 9,
@@ -192,6 +192,822 @@
 		"type": "stat"
 	  },
 	  {
+		"datasource": "telegraf",
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "thresholds"
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				}
+			  ]
+			},
+			"unit": "decbytes"
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 8,
+		  "w": 7,
+		  "x": 8,
+		  "y": 0
+		},
+		"id": 4,
+		"options": {
+		  "displayMode": "gradient",
+		  "orientation": "horizontal",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "showUnfilled": true,
+		  "text": {}
+		},
+		"pluginVersion": "7.5.3",
+		"targets": [
+		  {
+			"alias": "ftps",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "A",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"rx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "ftps"
+			  }
+			]
+		  },
+		  {
+			"alias": "grafana",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "B",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"rx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "grafana"
+			  }
+			]
+		  },
+		  {
+			"alias": "influxdb",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "C",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"rx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "influxdb"
+			  }
+			]
+		  },
+		  {
+			"alias": "mysql",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "D",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"rx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "mysql"
+			  }
+			]
+		  },
+		  {
+			"alias": "nginx",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "E",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"rx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "nginx"
+			  }
+			]
+		  },
+		  {
+			"alias": "phpmyadmin",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "F",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"rx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "phpmyadmin"
+			  }
+			]
+		  },
+		  {
+			"alias": "telegraf",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "G",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"rx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "telegraf"
+			  }
+			]
+		  },
+		  {
+			"alias": "wordpress",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "H",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"rx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "wordpress"
+			  }
+			]
+		  }
+		],
+		"timeFrom": null,
+		"timeShift": null,
+		"title": "recieved data",
+		"type": "bargauge"
+	  },
+	  {
+		"datasource": "telegraf",
+		"fieldConfig": {
+		  "defaults": {
+			"color": {
+			  "mode": "thresholds"
+			},
+			"mappings": [],
+			"thresholds": {
+			  "mode": "absolute",
+			  "steps": [
+				{
+				  "color": "green",
+				  "value": null
+				}
+			  ]
+			},
+			"unit": "decbytes"
+		  },
+		  "overrides": []
+		},
+		"gridPos": {
+		  "h": 8,
+		  "w": 7,
+		  "x": 15,
+		  "y": 0
+		},
+		"id": 5,
+		"options": {
+		  "displayMode": "gradient",
+		  "orientation": "horizontal",
+		  "reduceOptions": {
+			"calcs": [
+			  "lastNotNull"
+			],
+			"fields": "",
+			"values": false
+		  },
+		  "showUnfilled": true,
+		  "text": {}
+		},
+		"pluginVersion": "7.5.3",
+		"targets": [
+		  {
+			"alias": "ftps",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "A",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"tx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "ftps"
+			  }
+			]
+		  },
+		  {
+			"alias": "grafana",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "B",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"tx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "grafana"
+			  }
+			]
+		  },
+		  {
+			"alias": "influxdb",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "C",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"tx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "influxdb"
+			  }
+			]
+		  },
+		  {
+			"alias": "mysql",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "D",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"tx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "mysql"
+			  }
+			]
+		  },
+		  {
+			"alias": "nginx",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "E",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"tx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "nginx"
+			  }
+			]
+		  },
+		  {
+			"alias": "phpmyadmin",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "F",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"tx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "phpmyadmin"
+			  }
+			]
+		  },
+		  {
+			"alias": "telegraf",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "G",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"tx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "telegraf"
+			  }
+			]
+		  },
+		  {
+			"alias": "wordpress",
+			"groupBy": [
+			  {
+				"params": [
+				  "10s"
+				],
+				"type": "time"
+			  },
+			  {
+				"params": [
+				  "null"
+				],
+				"type": "fill"
+			  }
+			],
+			"hide": false,
+			"measurement": "docker_container_net",
+			"orderByTime": "ASC",
+			"policy": "default",
+			"queryType": "randomWalk",
+			"refId": "H",
+			"resultFormat": "time_series",
+			"select": [
+			  [
+				{
+				  "params": [
+					"tx_bytes"
+				  ],
+				  "type": "field"
+				},
+				{
+				  "params": [],
+				  "type": "sum"
+				}
+			  ]
+			],
+			"tags": [
+			  {
+				"key": "io.kubernetes.container.name",
+				"operator": "=",
+				"value": "wordpress"
+			  }
+			]
+		  }
+		],
+		"timeFrom": null,
+		"timeShift": null,
+		"title": "transmited data",
+		"type": "bargauge"
+	  },
+	  {
 		"aliasColors": {},
 		"bars": true,
 		"dashLength": 10,
@@ -204,7 +1020,7 @@
 		"fill": 5,
 		"fillGradient": 5,
 		"gridPos": {
-		  "h": 9,
+		  "h": 14,
 		  "w": 22,
 		  "x": 0,
 		  "y": 8
@@ -636,822 +1452,6 @@
 		  "align": false,
 		  "alignLevel": null
 		}
-	  },
-	  {
-		"datasource": "telegraf",
-		"fieldConfig": {
-		  "defaults": {
-			"color": {
-			  "mode": "thresholds"
-			},
-			"mappings": [],
-			"thresholds": {
-			  "mode": "absolute",
-			  "steps": [
-				{
-				  "color": "green",
-				  "value": null
-				}
-			  ]
-			},
-			"unit": "decbytes"
-		  },
-		  "overrides": []
-		},
-		"gridPos": {
-		  "h": 9,
-		  "w": 22,
-		  "x": 0,
-		  "y": 17
-		},
-		"id": 4,
-		"options": {
-		  "displayMode": "gradient",
-		  "orientation": "horizontal",
-		  "reduceOptions": {
-			"calcs": [
-			  "lastNotNull"
-			],
-			"fields": "",
-			"values": false
-		  },
-		  "showUnfilled": true,
-		  "text": {}
-		},
-		"pluginVersion": "7.5.3",
-		"targets": [
-		  {
-			"alias": "ftps",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "A",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"rx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "ftps"
-			  }
-			]
-		  },
-		  {
-			"alias": "grafana",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "B",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"rx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "grafana"
-			  }
-			]
-		  },
-		  {
-			"alias": "influxdb",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "C",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"rx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "influxdb"
-			  }
-			]
-		  },
-		  {
-			"alias": "mysql",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "D",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"rx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "mysql"
-			  }
-			]
-		  },
-		  {
-			"alias": "nginx",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "E",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"rx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "nginx"
-			  }
-			]
-		  },
-		  {
-			"alias": "phpmyadmin",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "F",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"rx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "phpmyadmin"
-			  }
-			]
-		  },
-		  {
-			"alias": "telegraf",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "G",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"rx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "telegraf"
-			  }
-			]
-		  },
-		  {
-			"alias": "wordpress",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "H",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"rx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "wordpress"
-			  }
-			]
-		  }
-		],
-		"timeFrom": null,
-		"timeShift": null,
-		"title": "recieved data",
-		"type": "bargauge"
-	  },
-	  {
-		"datasource": "telegraf",
-		"fieldConfig": {
-		  "defaults": {
-			"color": {
-			  "mode": "thresholds"
-			},
-			"mappings": [],
-			"thresholds": {
-			  "mode": "absolute",
-			  "steps": [
-				{
-				  "color": "green",
-				  "value": null
-				}
-			  ]
-			},
-			"unit": "decbytes"
-		  },
-		  "overrides": []
-		},
-		"gridPos": {
-		  "h": 9,
-		  "w": 22,
-		  "x": 0,
-		  "y": 26
-		},
-		"id": 5,
-		"options": {
-		  "displayMode": "gradient",
-		  "orientation": "horizontal",
-		  "reduceOptions": {
-			"calcs": [
-			  "lastNotNull"
-			],
-			"fields": "",
-			"values": false
-		  },
-		  "showUnfilled": true,
-		  "text": {}
-		},
-		"pluginVersion": "7.5.3",
-		"targets": [
-		  {
-			"alias": "ftps",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "A",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"tx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "ftps"
-			  }
-			]
-		  },
-		  {
-			"alias": "grafana",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "B",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"tx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "grafana"
-			  }
-			]
-		  },
-		  {
-			"alias": "influxdb",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "C",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"tx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "influxdb"
-			  }
-			]
-		  },
-		  {
-			"alias": "mysql",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "D",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"tx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "mysql"
-			  }
-			]
-		  },
-		  {
-			"alias": "nginx",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "E",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"tx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "nginx"
-			  }
-			]
-		  },
-		  {
-			"alias": "phpmyadmin",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "F",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"tx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "phpmyadmin"
-			  }
-			]
-		  },
-		  {
-			"alias": "telegraf",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "G",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"tx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "telegraf"
-			  }
-			]
-		  },
-		  {
-			"alias": "wordpress",
-			"groupBy": [
-			  {
-				"params": [
-				  "10s"
-				],
-				"type": "time"
-			  },
-			  {
-				"params": [
-				  "null"
-				],
-				"type": "fill"
-			  }
-			],
-			"hide": false,
-			"measurement": "docker_container_net",
-			"orderByTime": "ASC",
-			"policy": "default",
-			"queryType": "randomWalk",
-			"refId": "H",
-			"resultFormat": "time_series",
-			"select": [
-			  [
-				{
-				  "params": [
-					"tx_bytes"
-				  ],
-				  "type": "field"
-				},
-				{
-				  "params": [],
-				  "type": "sum"
-				}
-			  ]
-			],
-			"tags": [
-			  {
-				"key": "io.kubernetes.container.name",
-				"operator": "=",
-				"value": "wordpress"
-			  }
-			]
-		  }
-		],
-		"timeFrom": null,
-		"timeShift": null,
-		"title": "transmited data",
-		"type": "bargauge"
 	  }
 	],
 	"refresh": "10s",
@@ -1469,5 +1469,5 @@
 	"timezone": "",
 	"title": "all",
 	"uid": "K5W13TuMz",
-	"version": 2
+	"version": 1
   }

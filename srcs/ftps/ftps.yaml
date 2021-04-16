@@ -41,10 +41,6 @@ spec:
       protocol: TCP
       port: 21
       targetPort: 21
-    - name: ftp20
-      protocol: TCP
-      port: 20
-      targetPort: 20
     - name: ftp30020
       protocol: TCP
       port: 30020

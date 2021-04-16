@@ -56,11 +56,4 @@ prepare
 build
 deploy
 
-echo "--------------------------------------------"
-echo "nginx main page: http://$(minikube ip)"
-echo "wordpress: http://$(minikube ip):5050 | http://$(minikube ip)/wordpress"
-echo "phpmyadmin: http://$(minikube ip):5000 | http://$(minikube ip)/phpmyadmin"
-echo "grafana: http://$(minikube ip):3000"
-echo "--------------------------------------------"
-
-minikube dashboard --url
+minikube dashboard
