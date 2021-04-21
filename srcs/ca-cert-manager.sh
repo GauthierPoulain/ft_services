@@ -4,8 +4,8 @@ cd $DIR
 mkdir -p certs
 openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 \
   -subj "/C=FR/ST=Auvergne-Rhône-Alpes/L=Lyon/O=42/CN=gapoulai" \
-  -keyout certs/tls.key -out certs/tls.cert
+  -keyout certs/tls.key -out certs/tls.crt
 
 kubectl create secret tls ft-services-tls \
-  --cert ./certs/tls.cert \
+  --cert ./certs/tls.crt \
   --key ./certs/tls.key
