@@ -18,9 +18,6 @@ spec:
         - name: grafana
           image: ft-services-grafana:latest
           imagePullPolicy: Never
-          env:
-            - name: GF_SECURITY_ADMIN_PASSWORD
-              value: "salut"
           ports:
             - containerPort: 3000
 

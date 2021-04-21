@@ -11,7 +11,7 @@ RUN apk add grafana
 
 ADD ./srcs/datasource.yaml /usr/share/grafana/conf/provisioning/datasources/
 ADD ./srcs/dashboard.yaml /usr/share/grafana/conf/provisioning/dashboards/
-ADD ./srcs/	dashboards/*.json /usr/share/grafana/conf/provisioning/dashboards/
+ADD ./srcs/dashboards/*.json /usr/share/grafana/conf/provisioning/dashboards/
 
 COPY ./srcs/init.sh /init.sh
 
