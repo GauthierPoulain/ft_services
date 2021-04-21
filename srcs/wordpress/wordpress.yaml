@@ -1,7 +1,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: wordpress-deploy
+  name: wordpress
   labels:
     app: wordpress
 spec:
@@ -25,7 +25,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: wordpress-service
+  name: wordpress
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
 spec:

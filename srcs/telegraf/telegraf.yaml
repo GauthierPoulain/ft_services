@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: telegraf-deploy
+  name: telegraf
   labels:
     app: telegraf
 spec:

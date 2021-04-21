@@ -1,7 +1,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: phpmyadmin-deploy
+  name: phpmyadmin
   labels:
     app: phpmyadmin
 spec:
@@ -25,7 +25,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: phpmyadmin-service
+  name: phpmyadmin
   annotations:
       metallb.universe.tf/allow-shared-ip: shared
 spec:

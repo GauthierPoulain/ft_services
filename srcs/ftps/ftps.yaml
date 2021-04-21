@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ftps-deploy
+  name: ftps
   labels:
     app: ftps
 spec:
@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ftps-service
+  name: ftps
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
 spec:
